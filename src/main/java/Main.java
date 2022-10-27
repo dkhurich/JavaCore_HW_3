@@ -42,7 +42,7 @@ public class Main {
         }
     }
 
-    static void zipFiles(String zipPath, File[] fileList) {
+    static boolean zipFiles(String zipPath, File[] fileList) {
 
         try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(zipPath))) {
             for (File file : fileList) {
@@ -56,8 +56,10 @@ public class Main {
                 fis.close();
                 file.delete();
             }
+            return true;
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
